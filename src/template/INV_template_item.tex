@@ -1,0 +1,39 @@
+\documentclass[invoice]{coilchain}
+
+\begin{document}
+
+% Keep invoice number inline with accounting
+\InvoiceNumber{001}
+
+%Due date YYYY-MM-DD  displayed in a european fashion
+\InvoiceDueDate{2022-01-01}
+
+% Make title
+\maketitle
+
+% Recipient
+\InvoiceFor{Joe Dart}{rue des papillons 2000 Neuchatel}
+
+
+% Description | UnitPrice | Quantity | TotalPrice
+
+\InvoiceLine{Box of chocolate}{1}{2}{2.-}
+\InvoiceSubLine{Chocolate wrapping included}
+
+\InvoiceLine{Bottle of syrup}{1}{1}{1.-}
+\InvoiceSubLine{Consigned bottle}
+
+% Invoice total
+\InvoiceTotal{3.-}
+
+% Make invoice table
+\InvoiceTable
+
+% Include bank details for payement
+\InvoiceBankDetails
+
+
+\end{document}
+
+
+

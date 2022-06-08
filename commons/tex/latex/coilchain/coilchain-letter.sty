@@ -1,0 +1,18 @@
+\NeedsTeXFormat{LaTeX2e}[1994/06/01]
+\ProvidesPackage{coilchain-letter}[2022-03-22 Letter]
+
+\makeatletter
+
+
+\newenvironment{letter}{
+\thispagestyle{empty}
+\newcommand{\LetterFrom}[1]{##1\vskip1em}
+\newcommand{\LetterTo}[1]{\hfill\begin{tabular}{l}##1\end{tabular}\vskip1em}
+\newcommand{\LetterOpening}[1]{\vskip3em##1\vskip2em}
+\newcommand{\LetterSignature}[2]{\vskip5em##1\vskip2em##2}
+}{}
+
+
+\makeatother
+\renewcommand{\coilchaindisclaimer}{}
+\endinput

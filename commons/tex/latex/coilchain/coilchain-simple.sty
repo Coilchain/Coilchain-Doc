@@ -1,0 +1,113 @@
+\NeedsTeXFormat{LaTeX2e}[1994/06/01]
+\ProvidesPackage{coilchain-simple}[2022-03-22simple]
+
+
+
+\definecolor{CustomDark}{HTML}{333333}%genericdark,fortextetc.
+\definecolor{CustomLight}{HTML}{D6D5D0}%forfooterline
+\definecolor{CustomGray}{HTML}{706C61}%forlessimportanttext
+\definecolor{CustomWhite}{HTML}{FFFFFF}%genericlight,forbackground
+\definecolor{CustomRed}{HTML}{CE2A07} % primary highlight: for more important text
+\definecolor{CustomBlue}{HTML}{0658CF} % secondary highlight
+
+%Added for drawings only
+\definecolor{CustomBlack}{HTML}{000000}
+\definecolor{CustomPurple}{HTML}{B446A7}
+\definecolor{CustomGreen}{HTML}{28B464}
+\definecolor{CustomYellow}{HTML}{E7E65A}
+
+%BeamerLayout
+\useoutertheme{default}
+\useinnertheme{default}
+
+%%%%%%%%%%HEADLINE%%%%%%%%%%%%%
+\setbeamertemplate{headline}{%
+	\begin{beamercolorbox}[ht=4.5ex,dp=0ex]{headline}
+		%navigation
+		\strut~~\insertshorttitle~%
+		\setbox0=\hbox{\insertsection}\ifdim\wd0=0pt\else~{\footnotesize›}~~\insertsection\fi~%
+		\setbox0=\hbox{\insertsubsection}\ifdim\wd0=0pt\else~{\footnotesize›}~~\insertsubsection\fi~%
+		%pageno.
+		\hfill\insertframenumber{}%
+		\hskip1pt of \hskip1pt \inserttotalframenumber{}\hskip5pt~\vskip2pt
+	\end{beamercolorbox}
+
+	\begin{beamercolorbox}{lowerseparationlinehead}
+		\vskip3pt~
+	\end{beamercolorbox}
+}
+
+%%%%%%%%%%FOOTLINE%%%%%%%%%%%%%
+\setbeamertemplate{navigation symbols}{}
+\addtobeamertemplate{footline}{
+    \leavevmode%
+    \hbox{%
+    \begin{beamercolorbox}[wd=\paperwidth,ht=2.75ex,dp=.5ex,right,rightskip=1em]{CustomRed}%
+		\usebeamercolor[CustomRed]{navigation symbols}
+		\setbeamercolor{navigation symbols dimmed}{fg=red}
+		\insertslidenavigationsymbol%
+		%\insertframenavigationsymbol%
+		%\insertsubsectionnavigationsymbol%
+		%\insertsectionnavigationsymbol%
+		%\insertdocnavigationsymbol%
+		%\insertbackfindforwardnavigationsymbol%
+    \end{beamercolorbox}%
+    }%
+    \vskip0.5pt%
+}{}
+
+
+%%%%%%%%%%FRAME TITLE%%%%%%%%%%%%%
+\setbeamertemplate{frametitle}{
+	\ifbeamercolorempty[bg]{frametitle}{}{\nointerlineskip}%
+	\begin{beamercolorbox}[leftskip=0.4cm,sep=0cm,wd=\paperwidth]{frametitle}
+		\usebeamerfont{frametitle}%
+		\vbox{}\vskip-1ex%
+		\strut\insertframetitle\strut\par%
+		{%
+			\ifx\insertframesubtitle\@empty%
+			\else%
+			{\usebeamerfont{framesubtitle}\usebeamercolor[fg]{framesubtitle}\insertframesubtitle\strut\par}%
+			\fi
+		}%
+		%\vskip-.4cm%setinsidebeamercolorbox...evilhere...
+	\end{beamercolorbox}%
+}
+
+
+%smallcapssectionheadings
+\setbeamerfont{titlelike}{shape=\scshape}
+\setbeamerfont{frametitle}{shape=\scshape}
+
+\setbeamercolor*{headline}{bg=CustomDark,fg=CustomWhite}
+\setbeamercolor*{sectioninhead/foot}{bg=CustomDark,fg=CustomWhite}
+\setbeamercolor*{lowerseparationlinehead}{bg=CustomWhite}
+
+\setbeamercolor*{title}{bg=CustomWhite,fg=CustomDark}
+\setbeamercolor*{subtitle}{bg=CustomWhite,fg=CustomDark}
+
+\setbeamercolor*{sectionintoc}{bg=CustomWhite,fg=CustomDark}
+\setbeamercolor*{subsectionintoc}{bg=CustomWhite,fg=CustomDark}
+\setbeamercolor*{subsubsectionintoc}{bg=CustomWhite,fg=CustomDark}
+
+\setbeamercolor*{normaltext}{bg=CustomWhite,fg=CustomDark}
+\setbeamercolor*{alertedtext}{fg=CustomRed}
+\setbeamercolor*{exampletext}{fg=CustomDark}
+
+\setbeamercolor*{frametitle}{bg=CustomWhite,fg=CustomRed}
+\setbeamercolor*{blocktitle}{bg=CustomWhite,fg=CustomBlue}
+\setbeamercolor*{blocktitlealerted}{bg=CustomWhite,fg=CustomRed}
+\setbeamercolor*{blocktitleexample}{bg=CustomWhite,fg=CustomBlue}
+\setbeamercolor*{blockbody}{bg=CustomWhite,fg=CustomDark}
+\setbeamercolor*{blockbodyalerted}{bg=CustomWhite,fg=CustomDark}
+\setbeamercolor*{blockbodyexample}{bg=CustomWhite,fg=CustomDark}
+
+\setbeamercolor*{itemizeitem}{bg=CustomWhite,fg=CustomDark}
+\setbeamercolor*{itemizesubitem}{bg=CustomWhite,fg=CustomDark}
+\setbeamercolor*{itemizesubsubitem}{bg=CustomWhite,fg=CustomDark}
+\setbeamercolor*{enumerateitem}{bg=CustomWhite,fg=CustomDark}
+\setbeamercolor*{enumeratesubitem}{bg=CustomWhite,fg=CustomDark}
+\setbeamercolor*{enumeratesubsubitem}{bg=CustomWhite,fg=CustomDark}
+
+
+\endinput

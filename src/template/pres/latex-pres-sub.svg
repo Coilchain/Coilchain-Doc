@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="2560"
+   height="1920"
+   viewBox="0 0 677.33332 508.00001"
+   version="1.1"
+   id="svg5"
+   inkscape:version="1.1.2 (b8e25be833, 2022-02-05)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview7"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="1"
+     inkscape:pageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:document-units="mm"
+     showgrid="true"
+     units="px"
+     width="2560px"
+     inkscape:showpageshadow="false"
+     borderlayer="true"
+     showguides="true"
+     inkscape:guide-bbox="true">
+    <inkscape:grid
+       type="xygrid"
+       id="grid932"
+       empspacing="10"
+       originx="0"
+       originy="0"
+       dotted="true" />
+    <sodipodi:guide
+       position="0,508"
+       orientation="0,2560"
+       id="guide934" />
+    <sodipodi:guide
+       position="677.33333,508"
+       orientation="1920,0"
+       id="guide936" />
+    <sodipodi:guide
+       position="677.33333,0"
+       orientation="0,-2560"
+       id="guide938" />
+    <sodipodi:guide
+       position="0,0"
+       orientation="-1920,0"
+       id="guide940" />
+    <sodipodi:guide
+       position="21.166667,402.16667"
+       orientation="0,-1"
+       id="guide1100" />
+    <sodipodi:guide
+       position="21.166667,402.16667"
+       orientation="1,0"
+       id="guide1102" />
+    <sodipodi:guide
+       position="21.166666,21.166667"
+       orientation="0,-1"
+       id="guide1104" />
+    <sodipodi:guide
+       position="656.16667,402.16667"
+       orientation="1,0"
+       id="guide1106" />
+  </sodipodi:namedview>
+  <defs
+     id="defs2">
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath880">
+      <path
+         d="M 0,0 H 1223.5701 V 338.49545 H 0 Z"
+         id="path878" />
+    </clipPath>
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath950">
+      <path
+         d="M 0,0 H 1920 V 1440 H 0 Z"
+         id="path948" />
+    </clipPath>
+  </defs>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1" />
+  <inkscape:templateinfo>
+    <inkscape:name>latex-pres-sub</inkscape:name>
+    <inkscape:author>benou</inkscape:author>
+    <inkscape:date>2022-04-12</inkscape:date>
+  </inkscape:templateinfo>
+</svg>

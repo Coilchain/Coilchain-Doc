@@ -1,0 +1,304 @@
+% Save with file name COILCHAIN-YY####TYPE\_desciption.tex
+% mkdir COILCHAIN-YY####TYPE\_description/ if doc as dependencies
+% /img/   for image    /chap/    for chapters    /fig/    for figure sources
+
+\documentclass[technicalreport]{coilchain}
+
+\usepackage{multirow}
+\usepackage{tabularx}
+
+\begin{document}
+
+% increment sequence according to repository
+\docid{
+code = COILCHAIN,
+sequence = 0000,
+subcode = ,
+year = 2022,
+type = documentation,
+revision = 0.1}
+
+\title{Manual for the coilchain documentation}
+
+\author{Benjamin Bonnal}
+
+% DD MM YYYY
+\date{08}{06}{2022}
+
+
+\maketitle
+	
+	\begin{introduction}
+Communication is key to a performing team. In  addition to having a good 
+communication, a team must learn from previous mistakes and keep a trace of 
+achieved work. Instant messaging services excels at allowing fast communication 
+and quick discussion. However, they are not suited to long explanation and 
+in-depth concept discussion. Furthermore, they are not well suited for storage 
+of the past discussion (the free Slack edition only keeps the 10\,000 most 
+recent messages).
+
+This document presents the \texttt{coilchain} \LaTeX document class, a 
+standardized document format and classification system to ease communication 
+and storage of documents.
+
+To start using \verb|coilchain| as a document class, simply write the 
+following line at the top of your document: \verb|\documentclass{coilchain}|.
+	\end{introduction}
+	
+	\tableofcontents
+	
+	\section{Document Identifier}
+A document identifier is used to uniquely and unambiguously identify a 
+document. Such a number may later be used in an Enterprise Content Management 
+software (ECM). The document identifier is formed with a prefix code, the 
+current year and a sequence number in the current year.
+
+For example, a document is identified by:
+
+\begin{center}
+	\texttt{COILCHAIN\_220000DOC\_TITLE}
+\end{center}
+
+\texttt{COILCHAIN} is the prefix code. All coilchain documents should start with 
+this prefix code. \texttt{22} is the current year. \texttt{0000} is the 
+sequence number. This document is the first document using this identification 
+system, thus it is the document number zero. \texttt{DOC} is the document type: 
+\texttt{DOC}umentation.
+
+The document type is purely informational.
+
+All these informations are stored in the \texttt{docid} structure at the begining of each document. The revision number of the docid allows to keep track of the issued pdf. Each time a pdf is issued and shared, the revision number should be incremented so that the end reader can easily differentiate different issues of the same document.
+
+Other examples:
+
+\begin{center}
+	\texttt{COILCHAIN\_220001TR\_TITLE}\\
+	\texttt{COILCHAIN\_220000PRES\_TITLE}\\
+\end{center}
+
+See Section~\ref{sec:doctype} for a list of all suggested document types and 
+code.
+
+The document year should not change even if a new revision is made in another 
+year. For example, if a document is published in year 2022 with identifier 
+\texttt{COILCHAIN\_220001TR\_TITLE}, a subsequent revision in year 2023 should not modify its identifier, only the revision, internal to the document shall be updated.
+
+\section{Standard Document Template}
+This section describes the standard document templates that shall be used with 
+the \LaTeX{} class to help authors write a compliant document. The 
+class is used by adding \verb|\documentclass{coilchain}| at the beginning of 
+the document.
+
+\subsection{Document Identifier}\label{sec:docid}
+The document id can be automatically generated using a \LaTeX{} command. For 
+this document, the command is \verb|\docid{<params>}| where \verb|<params>| is 
+a comma-separated list of key-value pairs. For this document, the command 
+syntax to generate the document id \texttt{COILCHAIN\_220000DOC\_TITLE} is:
+\begin{verbatim}
+\docid{
+	code = COILCHAIN,
+	sequence = 0000,
+	subcode = ,
+	year = 2022,
+	type = documentation,
+	revision = 0.1}
+\end{verbatim}
+
+The available commands are:
+
+\begin{tabular}{|l|l|}\hline
+    \textbf{Key} & \textbf{Description} \\\hline
+
+    \texttt{code} 
+    & The document prefix code. \textbf{Default}: \texttt{COILCHAIN}.\\\hline
+    
+    \texttt{subcode} 
+    & The document prefix subcode. \textbf{Optional}.\\\hline
+
+    \texttt{type} 
+    & The document type. \textbf{Required.}\\\hline
+    
+    
+    \texttt{year} 
+    & The document year. \textbf{Required.}\\\hline
+    
+    \texttt{sequence} 
+    & The sequence number. \textbf{Required.}\\\hline
+
+    \texttt{revision} 
+    & The revision number. \textbf{Required.}\\\hline
+\end{tabular}
+
+\subsection{Document Type}\label{sec:doctype}
+A few document types are already defined and should be used as much as 
+possible.
+Here is the list of the pre defined document types and their short code and use 
+case.
+
+\begin{tabularx}{\textwidth}{lX}
+	\texttt{generalannouncement} (\texttt{GA}) & A document that will benefit 
+	the whole 
+	team and future members. \\
+	\texttt{technicalreport} (\texttt{TR}) & A document that describe a process,
+	progress, state or result of a technical or scientific research. \\
+	\texttt{engineeringpolicy} (\texttt{EP}) & A document that establishes the 
+	rules for designing new product and more general guidelines for engineering 
+	related guidelines. \\
+	\texttt{documentation} (\texttt{DOC}) & A document for documenting. 
+	Technical report should be preferred whenever possible. \\
+	\texttt{proposal} (\texttt{PR}) & A document proposing new documents, 
+	policies...\\
+	\texttt{procesverbal} (\texttt{PV}) & The minutes from a meeting with all 
+	the decisions.\\
+	\texttt{ordredujour} (\texttt{OJ}) & Ordre du jour for a meeting.\\
+   	\texttt{weeklyreport} (\texttt{WR}) & Weekly report.
+\end{tabularx}
+
+The document title must match the document type and type code. One can set the 
+document title using the command: \verb|\doctitle{<title>}|. If it is not set, 
+an error will be raised.
+
+\subsection{``Not For Publication'' Notice}\label{sec:notforpub}
+If a document is for internal use only, a ``Not For Publication'' notice should 
+be added to the document. In the \LaTeX{} template, one must add 
+\verb|\notforpublication| in the preamble of the document. This command adds 
+the following text on the first page of the document:
+\begin{center}
+	\textbf{\large Important notice:\\ this document is for 
+		internal use only and is not intended\\ for distribution to the  
+		public.}
+\end{center}
+
+The command also adds the \textbf{Not For Publication} notice in the footer of 
+all subsequent pages.
+
+\subsection{Watermark}
+A watermark can be added using document class options. To add the 
+\texttt{DRAFT} watermark, one must use the \verb|\wdraft| command at the beginning of the document. For 
+\texttt{CONFIDENTIAL} watermark, the \verb|\wconfidential| watermark command can be 
+used. The use of the \texttt{confidential} watermark should be reserved to 
+sensitive information relative to the technology or strategy of coilchain, 
+such as a document about domain names purchases.
+
+\subsection{Title Page}
+The first page of the document must have the coilchain logo, the document 
+identifier, the document type, the document title and the last modification 
+date, and an environment-friendly notice. If applicable, the authors may also 
+be added to the title page. Authors should not be added in some cases, such as 
+in a datasheet.
+
+The authors are set using the \verb|\author{<author>}| command. If there are 
+multiple authors, they must be sorted by the amount of work and 
+alphabetically if no clear order can be established between two or more author. 
+All authors of a document must have provided a significant enough amount of 
+work to be included. The authoring information is important to inform the 
+public who to contact about the publicly released document.
+Examples:
+\begin{verbatim}
+   \author{Joe Dart}
+   \author{Peter Pan}
+   \author{Buzz Lightning}
+\end{verbatim}
+
+The document type in the title is set using  \verb|\doctitle{<type>}| as 
+described in Section~\ref{sec:doctype}. The document identifier is set using 
+the \verb|\docid{<params>}| command described in Section~\ref{sec:docid}. The 
+document title is set using the \verb|\title{<title>}| command. Two lines 
+titles are tolerated using \texttt{\textbackslash\textbackslash} e.g.
+\texttt{\textbackslash{}title\{First line\textbackslash\textbackslash{}Second 
+line\}}.
+
+The title page also includes an introduction or abstract. This introduction 
+text is added using the environment \verb|\introduction[<title>]|. The default 
+title \textbf{Introduction} may be changed using the optional parameter:
+\begin{verbatim}
+    \begin{introduction}[Abstract]
+        content...
+    \end{introduction}
+\end{verbatim}
+
+An important ``Not For Publication'' notice shall be added on the first page if 
+the document is not intended for distribution to the public. As described in 
+Section~\ref{sec:notforpub}, one must use the \verb|\notforpublication| command 
+to add the notice.
+
+\subsection{Header and Footer}
+The header and footer are automatically managed by the document class. They 
+must include the following information:
+\begin{itemize}
+	\item Document identifier
+	\item Date of last revision
+	\item ``Not For Publication'' notice if need be
+	\item Page number and total page number
+	\item Current section (optional)
+\end{itemize}
+
+\subsection{Deprecated and Superseded Commands}
+If the document is deprecated, use the \verb|\deprecated[<since>]| command 
+where \verb|<since>| is an optional deprecation date. Here is the result with 
+and without the deprecation date:
+
+\textcolor{red}{\textbf{THIS DOCUMENT IS DEPRECATED SINCE JUNE 2017. FOR 
+REFERENCE ONLY.}}\\
+\textcolor{red}{\textbf{THIS DOCUMENT IS DEPRECATED. FOR REFERENCE ONLY.}}
+
+If the document is superseded, use the \verb|\superseded[<by>]| command where 
+\verb|<by>| is an optional document name. Here is the result with and 
+without the superseding document name:
+
+\textcolor{red}{\textbf{THIS DOCUMENT IS SUPERSEDED BY COILCHAIN\_XXXX. FOR 
+		REFERENCE ONLY.}}\\
+\textcolor{red}{\textbf{THIS DOCUMENT IS SUPERSEDED. FOR REFERENCE ONLY.}}
+
+The red warnings are added on the title page.
+
+\subsection{Supplementary material}
+If supplementary material is required, such as Gerber files, the document must 
+clearly state a way to obtain this supplementary material. For publicly 
+available document, the supplementary material must be publicly available as 
+well.
+
+
+\subsection{Other Important Pages}
+If applicable, the document may include a table of contents, a list of figure, 
+a glossary, a list of tables, a list of equations... In addition, it may
+include a legal notice page which is automatically handled by the \LaTeX{}
+template. The legal notice page may be removed with the command 
+\verb|\nodisclaimer|.
+
+\subsection{Document Class Options}
+Use the \verb|short| options for document with a small number of pages. No 
+table of content must be included, nor any list of tables, figures... This will 
+change the layout to be more suited for a few pages document, such as a weekly 
+report.
+
+
+\section{Version control}
+The complete repository shall hold all the source necessary to retain the document information, thus all unecessary files are purposefully ommited from the repository.
+
+\subsection{Directory usage}
+All matters related to the class and style package are held in the \texttt{commons} directory.\\
+All source files are held in the \texttt{src} directory.\\
+All media specific to a single document are held in the \texttt{img} or \texttt{doc} directories inside the document directories. Within \texttt{img} a \texttt{src} directory can be used to store the vector graphics source files.\\
+
+The \texttt{scripts} directory aims at storing usefull spripts for compiling, compressing or media management.\\
+
+The \texttt{utils} directory aims at storing shared medias that are relevant to store in share root directory.
+
+\subsection{Media guidelines}
+All media should be vector .pdf file whenever possible.
+Ideally the source file should be .svg vector graphics.
+The color palette for the coilchain documentation is provided in the \texttt{palette} directory.
+When a raster image is inserted make sure the pixel density \textbf{does not exceed 300dpi} to keep the remote directory lightweight and to produce a lighweight pdf file.
+
+\subsection{.gitignore}
+The gitignore will not allow misplaced .pdf file to be uploaded to the remote repository. Make sure the medias are in the appropriate location.
+
+The compiled .pdf are kept local. Distribution of the files shall be performed by other mean than the Git repository to keep it lightweight and snappy.
+
+\section{Tex configuration}
+\subsection{MikTex config}
+
+\figi{miktex_config.PNG}{fig:miktex}{0.7\linewidth}{MikTex PATH configuration}
+
+\end{document}

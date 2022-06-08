@@ -1,0 +1,40 @@
+% Save with file name coilchain-YY###INV_desciption.tex
+
+
+\documentclass[invoice]{coilchain}
+
+\begin{document}
+
+% Make title
+\maketitle
+
+% Keep invoice number inline with accounting
+\InvoiceNumber{001}
+
+%Due date YYYY-MM-DD  displayed in a european fashion
+\InvoiceDueDate{2022-01-01}
+
+% Recipient
+\InvoiceFor{Joe Dart}{rue des papillons 2000 Neuchatel}
+
+
+% Description | Hours | Rate | TotalPrice
+\InvoiceTableHeadProject
+
+\InvoiceLine{Réparation vélo}{10}{20.-/h}{200.-}
+\InvoiceSubLine{Pièces de rechange sur facture séparée}
+
+% Invoice total
+\InvoiceTotal{200.-}
+
+% Make invoice table
+\InvoiceTable
+
+% Include bank details for payement
+\InvoiceBankDetails
+
+
+\end{document}
+
+
+

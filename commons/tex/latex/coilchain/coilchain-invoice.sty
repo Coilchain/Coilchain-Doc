@@ -1,0 +1,188 @@
+\NeedsTeXFormat{LaTeX2e}[1994/06/01]
+\ProvidesPackage{coilchain-invoice}[2022.03.22 Invoice]
+
+\PassOptionsToPackage{table}{xcolor}
+\PassOptionsToPackage{showdow}{datetime2}
+\RequirePackage{tabularx}
+\RequirePackage{booktabs}
+
+\makeatletter
+
+\newcommand{\inv@iceHeaderSectionName}[1]{\parbox[t]{0.1\textwidth}{#1}}
+\newcommand{\inv@iceRule}{{\color{gray} \vrule width 1mm}\hspace{0.1cm}}
+\newcommand{\inv@iceHeaderSkip}{0.5cm}
+
+\newcommand{\inv@iceNumber}{0}
+\newcommand{\InvoiceNumber}[1]{\renewcommand{\inv@iceNumber}{#1}}
+\newcommand{\inv@iceDate}{\today}
+\newcommand{\InvoiceDate}[1]{\renewcommand{\inv@iceDate}{\DTMdate{#1}}}
+\newcommand{\inv@iceDueDate}{\today}
+\newcommand{\InvoiceDueDate}[1]{\renewcommand{\inv@iceDueDate}{\DTMdate{#1}}}
+
+\newcommand{\inv@iceBank}{%
+	Bank name \\
+	Street nb\\
+	Code City\\
+	Switzerland\\
+}
+\newcommand{\inv@iceBankAccount}{Benjamin Bonnal}
+\newcommand{\inv@iceBankSwift}{SWIFTxxxxx}
+\newcommand{\inv@iceBankIBAN}{CH00 0000 0000 0000 0000 0}
+\newcommand{\inv@iceBankAccountLabel}{Name}
+\newcommand{\inv@iceBankSwiftLabel}{Swift}
+\newcommand{\inv@iceBankIBANLabel}{IBAN}
+
+\newcommand{\InvoiceBankDetails}{
+	\textbf{Bank details:}
+	\vskip1em
+	\parbox[t]{15em}{\vspace{0pt}
+		\inv@iceBank}
+	\parbox[t]{10em}{\vspace{0pt}%
+	\setlength{\tabcolsep}{0pt}
+	\begin{tabular}{ll}
+		\inv@iceBankAccountLabel~&~: \inv@iceBankAccount\\
+		\inv@iceBankSwiftLabel~&~: \inv@iceBankSwift\\
+		\inv@iceBankIBANLabel~&~: \inv@iceBankIBAN\\
+	\end{tabular}
+	}
+}
+
+\DTMsetdatestyle{ddmmyyyy}
+\DTMsetup{datesep=/}
+
+\newcommand{\InvoiceFor}[2]{%
+	\begin{minipage}[t]{0.49\textwidth}
+	\inv@iceHeaderSectionName{To:}
+	\inv@iceRule
+	\parbox[t]{0.9\textwidth}{
+		\textbf{#1}\\
+		#2
+	}
+	\end{minipage}
+	\hfill
+	\begin{minipage}[t]{0.3\textwidth}
+		\begin{tabular}[t]{rr}
+			Invoice \# & \inv@iceNumber \\
+			Invoice Date & \inv@iceDate\\
+			Due Date & \inv@iceDueDate\\
+		\end{tabular}
+	\end{minipage}
+	\vskip \inv@iceHeaderSkip
+}
+
+\newcommand{\inv@iceTable}{}
+
+\newcommand{\InvoiceLine}[4]{%
+	\g@addto@macro{\inv@iceTable}{
+		#1&#2&#3&#4\\
+	}
+}
+
+\newcommand{\InvoiceSectionLine}[4]{%
+	\g@addto@macro{\inv@iceTable}{
+		\quad#1&#2&#3&#4\\
+	}
+}
+
+\newcommand{\InvoiceSubLine}[1]{%
+	\g@addto@macro{\inv@iceTable}{
+		\addlinespace[-1ex]
+		\multicolumn{4}{l}{\hskip0.5em\small#1}\\ % align: l,c,r
+	}
+}
+
+\newcommand{\InvoiceSection}[1]{%
+	\g@addto@macro{\inv@iceTable}{
+		\addlinespace[1ex]
+		\multicolumn{4}{l}{\bfseries#1}\\
+	}
+}
+
+\newcommand{\InvoiceSeparator}{%
+	\g@addto@macro{\inv@iceTable}{
+		\hline
+	}
+}
+
+\newcommand{\inv@iceSubTotal}{}
+\newcommand{\InvoiceSubTotal}[1]{\renewcommand{\inv@iceSubTotal}{#1}}
+\newcommand{\inv@iceDiscount}{}
+\newcommand{\InvoiceDiscount}[1]{\renewcommand{\inv@iceDiscount}{#1}}
+\newcommand{\inv@iceTotal}{}
+\newcommand{\InvoiceTotal}[1]{\renewcommand{\inv@iceTotal}{#1}}
+\newcommand{\inv@iceTVA}{}
+\newcommand{\InvoiceTVA}[1]{\renewcommand{\inv@iceTVA}{#1}}
+
+\newcommand{\inv@iceTableHead}{
+	Description
+	&Unit Price (CHF)
+	&Quantity
+	&Total Price (CHF)
+}
+\newcommand{\InvoiceTableHeadProject}{
+	\renewcommand{\inv@iceTableHead}{
+		Description
+		&Hours
+		&Rate (CHF)
+		&Total (CHF)
+	}
+}
+
+\newcommand{\InvoiceTable}{%
+	\vskip 1cm
+	\bgroup
+	\def\arraystretch{1.5}
+	\begin{tabularx}{\textwidth}{Xrrr}\toprule
+		\inv@iceTableHead\\\midrule
+		\inv@iceTable
+		\bottomrule
+	\end{tabularx}
+	\vskip 1cm
+	
+	\begin{flushright}
+	\begin{tabular}{rr}
+		\ifdefempty{\inv@iceSubTotal}{}{
+		\Large\textbf{Sub Total\hskip 1cm}&\Large\textbf{\inv@iceSubTotal}\\
+		\Large\textbf{Discount\hskip 1cm}&\Large\textbf{\inv@iceDiscount}\\
+		\midrule
+		}
+		\Large\textbf{TOTAL\hskip 1cm}&\Large\textbf{\inv@iceTotal}\\
+		\ifdefempty{\inv@iceTVA}{}{
+			\small{TVA (7.7\%)\hskip 1cm}&\small{\inv@iceTVA}\\
+		}
+	\end{tabular}
+	\end{flushright}
+	\vskip 1cm
+	\begin{flushright}
+	\small{Numéro TVA: Non-applicable TVA}
+	\end{flushright}
+	\egroup
+	
+}
+
+\renewcommand{\maketitle}{\parskip=0pt%
+	\newpage
+	\null
+	\vskip10em
+	{\LARGE INVOICE}
+	\vskip5em
+}
+
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{1pt}
+\rhead{\includegraphics[height=4em]{logo}}
+\lhead{Benjamin Bonnal\\
+	rue Jacob-Brandt 8\\
+	CH-2300 La Chaux-de-Fonds\\
+	Switzerland\\
+	www.coilchainsynthlab.ch\\
+}
+\cfoot{Benjamin Bonnal, rue Jacob-Brandt 8, CH-2300 La Chaux-de-Fonds, Switzerland
+	\hskip0.5em\vrule\hskip0.5em www.coilchainsynthlab.ch}
+
+\renewcommand{\coilchaindisclaimer}{}
+
+\makeatother
+\endinput

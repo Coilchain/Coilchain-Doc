@@ -1,0 +1,35 @@
+% Save with file name coilchain-YY###OFR_desciption.tex
+
+\documentclass[offer]{coilchain}
+
+\begin{document}
+
+% Make title
+\maketitle
+
+% Keep invoice number inline with accounting
+\OfferSubject{Réparation et fabrication materiel pour vélo}
+
+% Recipient
+\OfferFor{Joe Dart}{rue des papillons 2000 Neuchatel}
+
+
+% Description | Hours | Rate | TotalPrice
+
+\OfferLine{Réparation vélo}{1}{20.-/h}{20.-}
+\OfferLine{Réparation trotinette}{1}{20.-/h}{20.-}
+\OfferLine{Fabrication rouage}{1}{20.-/h}{20.-}
+
+
+
+% Offer total
+\OfferTotal{60.-}
+
+% Make offer table
+\OfferTable
+
+
+\end{document}
+
+
+

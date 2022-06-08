@@ -1,0 +1,12 @@
+NPP commands for miktex compile
+
+multichapdoc
+
+NPP_SAVE
+"C:\Users\bonnal\Documents\benou-doc\script\win_npp\npp_exec_multichapdoc.bat" "$(CURRENT_DIRECTORY)" "$(NAME_PART)" "$(NAME_PART).pdf"
+
+
+simpledoc
+
+NPP_SAVE
+"C:\Users\bonnal\Documents\benou-doc\script\win_npp\npp_exec_simpledoc.bat" "$(CURRENT_DIRECTORY)" "$(NAME_PART)"
